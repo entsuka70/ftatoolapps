@@ -51,6 +51,7 @@
           <div class="d-block-inline px-1">
             @if(Auth::check())
               @if($post->likeBy(Auth::user())->count() > 0)
+              <!-- いいねの追加 -->
                 <form class="like_button" action="like/{{ $post->likeBy(Auth::user())->firstOrFail()->id }}" method="post">
                   @csrf
                   <input type="hidden" name="post_id" value="{{ $post->id }}">
@@ -59,6 +60,7 @@
                   </button>
                 </form>
               @else
+              <!-- いいねの削除 -->
                 <form class="like_button" action="post/{{ $post->id }}/likes" method="post">
                   @csrf
                   <input type="hidden" name="post_id" value="{{ $post->id }}">
@@ -73,7 +75,7 @@
             @if($post->user->profile_fileName)
               <img src="{{ secure_asset($post->user->profile_fileName) }}" width="40px" height="40px" alt="プロフィール画像">
             @else
-              <img src="{{ secure_asset('storage/profile_images/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+              <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
             @endif
               {{$post->user->name}} さん
           </div>
@@ -81,21 +83,24 @@
           <!-- 投稿内容の更新ボタン -->
           @if(Auth::check())
             @if($user->role == 'admin-only')
+              <!-- 【モーダル表示】 -->
               <div class="container">
                 <div class="row">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testModal">更新</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testModal" data-whatever="{{ $post->id }}">更新</button>
                 </div>
               </div>
-              <!-- ボタン・リンククリック後に表示される画面の内容 -->
+              <!-- 【モーダル】ボタンクリック後に表示される画面の内容 -->
               <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h4 class="modal-title" id="myModalLabel">投稿内容更新画面</h4></h4>
                     </div>
-                    <form class="" action="post/update/{$post->id}" method="post">
+                    <!-- 投稿内容の更新 -->
+                    <form class="" action="post/update/{{ $post->id }}" method="post">
                       @csrf
                       <div class="modal-body">
+                        <input id="recipient-name" type="hidden" name="id">
                         <textarea name="body" rows="5" cols="50">{{ old('body') }}</textarea>
                       </div>
                       <div class="modal-footer">
@@ -106,27 +111,31 @@
                   </div>
                 </div>
               </div>
-              <form class="" action="post/delete/{$post->id}" method="post">
+              <!-- 投稿内容の削除 -->
+              <form class="" action="post/delete/{{ $post->id }}" method="post">
                 @csrf
                 <button class="btn btn-danger" type="submit" name="button">削除</button>
               </form>
             @endif
             @if($user->id == $post->user_id && $user->role == 'login-user')
+              <!-- 【モーダル表示】 -->
               <div class="container">
                 <div class="row">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testModal">更新</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#testModal" data-whatever="{{ $post->id }}">更新</button>
                 </div>
               </div>
-              <!-- ボタン・リンククリック後に表示される画面の内容 -->
+              <!-- 【モーダル】ボタンクリック後に表示される画面の内容 -->
               <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h4 class="modal-title" id="myModalLabel">投稿内容更新画面</h4></h4>
                     </div>
-                    <form class="" action="post/update/{$post->id}" method="post">
+                    <!-- 投稿内容の更新 -->
+                    <form class="" action="post/update/{{ $post->id }}" method="post">
                       @csrf
                       <div class="modal-body">
+                        <!-- <input id="recipient-name" type="hidden" name="id" value=""> -->
                         <textarea name="body" rows="5" cols="50">{{ old('body') }}</textarea>
                       </div>
                       <div class="modal-footer">
@@ -138,7 +147,8 @@
                   </div>
                 </div>
               </div>
-              <form class="" action="post/delete/{$post->id}" method="post">
+              <!-- 投稿内容の削除 -->
+              <form class="" action="post/delete/{{ $post->id }}" method="post">
                 @csrf
                 <button class="btn btn-danger" type="submit" name="button">削除</button>
               </form>

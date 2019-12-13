@@ -36,4 +36,14 @@
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-});
+  });
+
+//モーダル値受け渡し
+  $(function(){
+    $('#testModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
+      var recipient = button.data('whatever'); //data-whatever の値を取得
+      var modal = $(this);  //モーダルを取得
+      modal.find('.modal-body input#recipient-name').val(recipient); //inputタグname属性に受け渡し
+    });
+  });

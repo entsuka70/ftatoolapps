@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:description" content="ようこそFTATOOLへ。FTATOOLを用いてエラー解決を一緒に探しましょう！">
     <meta property="og:image" content="{{ secure_asset('assets/img/FTATOOL.png') }}">
-    <meta name="twitter:card" content="Summary Card with Large Image">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@entsuka">
     <meta property="og:site_name" content="FTATOOL | みんなのエラー解決サイト">
     <meta property="og:locale" content="ja_JP">

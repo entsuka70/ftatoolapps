@@ -43,7 +43,7 @@ class FTAToolPostController extends Controller
 
   }
 
-  public function store(FTAPostRequest $request)
+  public function store(FTAPostRequest $request, $id)
   {
     $Post = new Post;
     $forms = $request->all();
@@ -55,19 +55,18 @@ class FTAToolPostController extends Controller
   public function update(FTAPostUpdateRequest $request)
   {
     $errorDetail_id = $request->session()->get('ses_detailId'); //セッションを用いてIDの取得
-
-    $PostUpdate = Post::where('ftatool_id', '=', $errorDetail_id)->first();
+    $PostUpdate = Post::where('ftatool_id', '=', $errorDetail_id)->find($request->id);
     $contents = $request->all();
     unset($contents['_token']);
     $PostUpdate->fill($contents)->save();
-
+    //
     return redirect('post');
   }
 
   public function remove(Request $request)
   {
     $errorDetail_id = $request->session()->get('ses_detailId'); //セッションを用いてIDの取得
-    Post::where('ftatool_id', '=', $errorDetail_id)->first()->delete();
+    Post::where('ftatool_id', '=', $errorDetail_id)->find($request->id)->delete();
     return redirect('post');
   }
 
