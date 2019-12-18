@@ -18,6 +18,8 @@ Route::get('/', 'FTAToolController@index')->name('ftatool');
 Route::post('ftatool', 'FTAToolController@post');
 Route::get('errorpage', 'FTAToolErrorController@index');
 
+//FTATOOLとはの記述
+Route::get('ftatool_description', 'FTAToolDescriptionController@index');
 //実装機能ページの記述
 Route::get('implementationFunction', 'FTAToolImplementationController@index');
 

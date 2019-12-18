@@ -35,9 +35,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
   </head>
   <body>
-    <header class="header-contents my-3">
+    <header class="header-contents mt-3">
       <div class="container headerbox">
         <div class="header-left">
           <h1>
@@ -49,9 +51,10 @@
         <ul class="header-right">
           @guest
           <li>
-            <button class="btn btn-dark" type="button" name="button">
-              <a class="login" href="implementationFunction">実装機能について</a>
-            </button>
+            <a class="mr-3 blue-grey-text" href="ftatool_description">FTATOOLとは</a>
+          </li>
+          <li>
+            <a class="mr-3 blue-grey-text" href="implementationFunction">実装機能について</a>
           </li>
           <li>
             <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
@@ -93,6 +96,61 @@
           </li>
           @endguest
         </ul>
+        <div id="nav-drawer">
+          <input id="nav-input" type="checkbox" class="nav-unshown">
+          <label id="nav-open" for="nav-input"><span></span></label>
+          <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+          <div id="nav-content">
+            <ul class="sp-header-right">
+              @guest
+              <li>
+                <a class="mr-3 blue-grey-text" href="ftatool_description">FTATOOLとは</a>
+              </li>
+              <li>
+                <a class="mr-3 blue-grey-text" href="implementationFunction">実装機能について</a>
+              </li>
+              <li>
+                <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+              </li>
+              <li>
+                <button class="btn btn-primary" type="button" name="button">
+                  <a class="login" href="{{ route('login') }}">ログイン</a>
+                </button>
+              </li>
+              @if(Route::has('register'))
+              <li>
+                <button class="btn btn-default" type="button" name="button">
+                  <a class="regist" href="{{ route('register') }}">ユーザー登録</a>
+                </button>
+              </li>
+              @endif
+              @else
+              <li>
+                @if($user->profile_fileName)
+                  <img src="{{ $user->profile_fileName }}" width="40px" height="40px" alt="プロフィール画像">
+                @else
+                  <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+                @endif
+              </li>
+              <li>
+                <a href="profile">
+                  <button class="btn" type="button" name="button" >
+                    {{ Auth::user()->name }}
+                  </button>
+                </a>
+              </li>
+              <li>
+                <form class="" action="{{ route('logout') }}" method="post">
+                  @csrf
+                  <button class="btn btn-outline-default waves-effect" type="submit" name="button">
+                    ログアウト
+                  </button>
+                </form>
+              </li>
+              @endguest
+            </ul>
+          </div>
+        </div>
       </div>
     </header>
     <!-- メインコンテンツはレイアウト外(views/ToDoApp/index)で作成 -->
@@ -107,12 +165,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <!-- Bootstrap tooltips -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script> -->
-    <!-- Bootstrap core JavaScript -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-    <!-- MDB core JavaScript -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script> -->
     <!-- javascript読み込み -->
     <script type="text/javascript" src="{{ secure_asset('assets/js/app.js') }}"></script>
   </body>

@@ -29,7 +29,7 @@
           <button type="submit" class="btn btn-primary px-4 py-3 d-block">投稿</button>
         </div>
         <div class="col-6">
-          <a href="errorpage" class="btn btn-default white px-4 py-3">戻る</a>
+          <a href="errorpage" class="btn btn-default white-text white px-4 py-3">戻る</a>
         </div>
         @endif
       </div>
@@ -104,7 +104,7 @@
                         <textarea name="body" rows="5" cols="50">{{ old('body') }}</textarea>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                        <button type="button" class="btn btn-default white-text" data-dismiss="modal">閉じる</button>
                         <button type="submit" class="btn btn-primary">更新</button>
                       </div>
                     </form>
@@ -140,7 +140,7 @@
                       </div>
                       <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                        <button type="button" class="btn btn-default white-text" data-dismiss="modal">閉じる</button>
                         <button type="submit" class="btn btn-primary">更新</button>
                       </div>
                     </form>

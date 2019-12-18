@@ -51,8 +51,8 @@
               <h5>ユーザー名:{{ $user->name }}</h5>
               <form action="profile/updateName" method="post">
                 @csrf
-                <input type="text" name="name" placeholder="変更後ユーザー名" value="{{ old('name') }}">
-                <button class="btn" type="submit"><i class="fas fa-edit"></i></button>
+                <input class="edit-input" type="text" name="name" placeholder="変更後ユーザー名" value="{{ old('name') }}">
+                <button class="edit-button" type="submit"><i class="fas fa-edit"></i></button>
               </form>
               @if($errors->has('name'))
                 <div class="alert alert-danger">
@@ -66,8 +66,8 @@
               <h5>メールアドレス:{{ $user->email }}</h5>
               <form action="profile/updateEmail" method="post">
                 @csrf
-                <input type="text" name="email" placeholder="変更後メールアドレス" value="{{ old('email') }}">
-                <button class="btn" type="submit"><i class="fas fa-edit"></i></button>
+                <input class="edit-input" type="text" name="email" placeholder="変更後メールアドレス" value="{{ old('email') }}">
+                <button class="edit-button" type="submit"><i class="fas fa-edit"></i></button>
               </form>
               @if($errors->has('email'))
               <div class="alert alert-danger">
