@@ -10,7 +10,12 @@
       @endif
   <h2 class="search_language mb-4">検索言語『{{ $ses_lang }}』</h2>
   <div>
-    <img class="error-image" src="{{ secure_asset('assets/img/errorpage.png') }}" alt="errorpage">
+    @if(app('env') == 'local')
+      <img class="error-image" src="{{ asset('assets/img/errorpage.png') }}" alt="errorpage">
+    @endif
+    @if(app('env') == 'production')
+      <img class="error-image" src="{{ secure_asset('assets/img/errorpage.png') }}" alt="errorpage">
+    @endif
   </div>
   @foreach($ses_lists as $ses_list)
     <div class="list_error p-3 my-2">

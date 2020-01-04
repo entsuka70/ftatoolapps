@@ -72,12 +72,34 @@
             @endif
           </div>
           <div class="d-block-inline px-1">
-            @if($post->user->profile_fileName)
-              <img src="{{ secure_asset($post->user->profile_fileName) }}" width="40px" height="40px" alt="プロフィール画像">
-            @else
-              <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
-            @endif
-              {{$post->user->name}} さん
+            {{-- 投稿画面のユーザー画像表示 --}}
+            @isset($post->user->profile_fileName)
+              @if($post->user->profile_fileName)
+                @if(app('env') == 'local')
+                  <img src="{{ asset($post->user->profile_fileName) }}" alt="profile" width="40px" hieght="40px">          
+                @endif
+                @if(app('env') == 'production')
+                  <img src="{{ secure_asset($post->user->profile_fileName) }}" alt="profile" width="40px" hieght="40px">
+                @endif
+              @endif
+            @endisset
+            {{-- 投稿画面のユーザー表示(退会していた場合) --}}
+            @empty($post->user->profile_Name)
+              @if(app('env') == 'local')
+                <img src="{{ asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">          
+              @endif
+              @if(app('env') == 'production')
+                <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+              @endif
+            @endempty
+            {{-- 投稿画面の投稿者名の表示 --}}
+            @isset($post->user->name)
+               {{$post->user->name}} さん         
+            @endisset
+            {{-- 投稿画面の投稿者が退会していた場合 --}}
+            @empty($post->user->name)
+               退会済みユーザーさん
+            @endempty
           </div>
         </div>
           <!-- 投稿内容の更新ボタン -->

@@ -4,7 +4,12 @@
 
 @section('content')
   <main class="main_image">
-    <img class="top-image" src="{{ secure_asset('assets/img/topimage.jpg') }}" alt="FTATOOL">
+    @if(app('env') == 'local')
+      <img class="top-image" src="{{ asset('assets/img/topimage.jpg') }}" alt="FTATOOL">
+    @endif
+    @if(app('env') == 'production')
+      <img class="top-image" src="{{ secure_asset('assets/img/topimage.jpg') }}" alt="FTATOOL">
+    @endif
     <div class="top-messageh jq-trigger">
       <h2 class="top-h2 jq-fade text-default">FTATOOL</h2>
       <h3 class="top-h3 jq-fade blue-grey-text mt-5">~エラーを探そう~</h3>

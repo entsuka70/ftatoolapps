@@ -26,9 +26,19 @@
     <!-- タイトルタグ -->
     <title>@yield('title')</title>
     <!-- ファビコン -->
+    @if(app('env') == 'local')
+    <link rel="shortcut icon" sizes="16x16" href="{{ asset('favicon.ico') }}">
+    @endif
+    @if(app('env') == 'production')
     <link rel="shortcut icon" sizes="16x16" href="{{ secure_asset('favicon.ico') }}">
+    @endif
     <!-- CSS設定 -->
+    @if(app('env') == 'local')
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    @endif
+    @if(app('env') == 'production')
     <link rel="stylesheet" href="{{ secure_asset('assets/css/app.css') }}">
+    @endif
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Material Design Bootstrap -->
@@ -57,7 +67,12 @@
             <a class="mr-3 blue-grey-text" href="implementationFunction">実装機能について</a>
           </li>
           <li>
+            @if(app('env') == 'local')
+            <img src="{{ asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">          
+            @endif
+            @if(app('env') == 'production')
             <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+            @endif
           </li>
           <li>
             <button class="btn btn-primary" type="button" name="button">
@@ -76,7 +91,12 @@
             @if($user->profile_fileName)
               <img src="{{ $user->profile_fileName }}" width="40px" height="40px" alt="プロフィール画像">
             @else
-              <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+              @if(app('env') == 'local')
+                <img src="{{ asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+              @endif
+              @if(app('env') == 'production')
+                <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+              @endif
             @endif
           </li>
           <li>
@@ -110,7 +130,12 @@
                 <a class="mr-3 blue-grey-text" href="implementationFunction">実装機能について</a>
               </li>
               <li>
-                <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+                @if(app('env') == 'local')
+                  <img src="{{ asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+                @endif
+                @if(app('env') == 'production')
+                  <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+                @endif
               </li>
               <li>
                 <button class="btn btn-primary" type="button" name="button">
@@ -129,7 +154,12 @@
                 @if($user->profile_fileName)
                   <img src="{{ $user->profile_fileName }}" width="40px" height="40px" alt="プロフィール画像">
                 @else
-                  <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="profile" width="40px" hieght="40px">
+                  @if(app('env') == 'local')
+                    <img src="{{ asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+                  @endif
+                  @if(app('env') == 'production')
+                    <img src="{{ secure_asset('assets/img/profile_default.png') }}" alt="プロフィール画像" width="40px" hieght="40px">
+                  @endif
                 @endif
               </li>
               <li>
@@ -166,6 +196,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- javascript読み込み -->
-    <script type="text/javascript" src="{{ secure_asset('assets/js/app.js') }}"></script>
+    @if(app('env') == 'local')
+      <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
+    @endif
+    @if(app('env') == 'production')
+      <script type="text/javascript" src="{{ secure_asset('assets/js/app.js') }}"></script>
+    @endif
   </body>
 </html>
