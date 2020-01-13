@@ -13,6 +13,7 @@
     <meta name="description" content="ようこそFTATOOLへ。FTATOOLを用いてエラー解決を一緒に探しましょう！">
     <!-- OGPタグ/twitterカード設定 -->
     <meta property="og:url" content="https://ftatoolapps.herokuapp.com/">
+    <meta property="og:url" content="https://ftatoolapp.work/">
     <meta property="og:title" content="FTATOLL / みんなのエラー解決投稿サイト">
     <meta property="og:type" content="website">
     <meta property="og:description" content="ようこそFTATOOLへ。FTATOOLを用いてエラー解決を一緒に探しましょう！">
